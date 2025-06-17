@@ -4,11 +4,12 @@ FROM python:3.11-slim
 WORKDIR /app
 
 # Copy files
+COPY src/app/requirements.txt ./requirements.txt
 COPY src/app ./src/app
 
 # Install uv and Python packages
 RUN pip install uv
-RUN uv pip install --system -r /src/app/requirements.txt
+RUN uv pip install --system -r requirements.txt
 
 # Create non-root user and give permissions
 RUN useradd -m appuser && \
